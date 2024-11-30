@@ -14,8 +14,10 @@ const upload = multer({
   },
 });
 
+//  get restaurant details
 router.get('/', jwtCheck, jwtParse, MyRestaurantController.getMyRestaurant)
 
+//  create a new restaurant
 router.post(
   "/",
   upload.single("imageFile"),
@@ -24,5 +26,15 @@ router.post(
   jwtParse,
   MyRestaurantController.createMyRestaurant
 );
+
+//  update the existing restaurant
+router.put(
+  "/",
+  upload.single("imageFile"),
+  validateMyRestaurantRequest,
+  jwtCheck,
+  jwtParse,
+  MyRestaurantController.updateMyRestaurant
+)
 
 export default router;

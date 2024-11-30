@@ -12,6 +12,7 @@ import { Restaurant } from "@/types";
 import { useEffect } from "react";
 import LoadingButtons from "@/components/LoadingButtons";
 
+//  Schema for restaurant details
 const formSchema = z
   .object({
     restaurantName: z.string({

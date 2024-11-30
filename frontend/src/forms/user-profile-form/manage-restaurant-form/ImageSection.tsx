@@ -12,6 +12,7 @@ import { useFormContext } from "react-hook-form";
 const ImageSection = () => {
   const { control, watch } = useFormContext();
 
+  //  image visible
   const existingImageUrl = watch("imageUrl");
 
   return (

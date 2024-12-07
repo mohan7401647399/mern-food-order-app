@@ -1,6 +1,6 @@
-import { ObjectId } from 'mongodb'
 import mongoose from 'mongoose'
 
+//  user schema
 const userScheme = new mongoose.Schema({
     auth0Id: {
         type: String,
@@ -24,5 +24,6 @@ const userScheme = new mongoose.Schema({
     }
 })
 
+//  user model
 const User = mongoose.model('User', userScheme)
 export default User

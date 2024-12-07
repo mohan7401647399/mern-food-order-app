@@ -11,36 +11,37 @@ import { useFormContext } from "react-hook-form";
 
 const DetailsSection = () => {
   const { control } = useFormContext();
+
   return (
-    <div className="space-y-2">
+    <div className='space-y-2'>
       <div>
-        <h2 className="text-2xl font-bold">Details</h2>
+        <h2 className='text-2xl font-bold'>Details</h2>
         <FormDescription>
           Enter the details about your restaurant
         </FormDescription>
       </div>
       <FormField
         control={control}
-        name="restaurantName"
+        name='restaurantName'
         render={({ field }) => (
           <FormItem>
             <FormLabel>Name</FormLabel>
             <FormControl>
-              <Input {...field} className="bg-white" />
+              <Input {...field} className='bg-white' />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
-      <div className="flex gap-4">
+      <div className='flex gap-4'>
         <FormField
           control={control}
-          name="city"
+          name='city'
           render={({ field }) => (
-            <FormItem className="flex-1">
+            <FormItem className='flex-1'>
               <FormLabel>City</FormLabel>
               <FormControl>
-                <Input {...field} className="bg-white" />
+                <Input {...field} className='bg-white' />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -48,12 +49,12 @@ const DetailsSection = () => {
         />
         <FormField
           control={control}
-          name="country"
+          name='country'
           render={({ field }) => (
-            <FormItem className="flex-1">
+            <FormItem className='flex-1'>
               <FormLabel>Country</FormLabel>
               <FormControl>
-                <Input {...field} className="bg-white" />
+                <Input {...field} className='bg-white' />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -63,12 +64,12 @@ const DetailsSection = () => {
 
       <FormField
         control={control}
-        name="deliveryPrice"
+        name='deliveryPrice'
         render={({ field }) => (
-          <FormItem className="max-w-[25%]">
+          <FormItem className='max-w-[25%]'>
             <FormLabel>Delivery price (£)</FormLabel>
             <FormControl>
-              <Input {...field} className="bg-white" placeholder="1.50" />
+              <Input {...field} className='bg-white' placeholder='1.50' />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -76,12 +77,12 @@ const DetailsSection = () => {
       />
       <FormField
         control={control}
-        name="estimatedDeliveryTime"
+        name='estimatedDeliveryTime'
         render={({ field }) => (
-          <FormItem className="max-w-[25%]">
+          <FormItem className='max-w-[25%]'>
             <FormLabel>Estimated Delivery Time (minutes)</FormLabel>
             <FormControl>
-              <Input {...field} className="bg-white" placeholder="30" />
+              <Input {...field} className='bg-white' placeholder='30' />
             </FormControl>
             <FormMessage />
           </FormItem>

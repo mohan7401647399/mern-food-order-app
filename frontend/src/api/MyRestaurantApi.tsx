@@ -22,7 +22,7 @@ export const useGetMyRestaurant = () => {
   };
   const { data: restaurant, isLoading } = useQuery(
     "fetchMyRestaurant",
-    getMyRestaurantRequest
+    getMyRestaurantRequest,
   );
   return { restaurant, isLoading };
 };
@@ -32,7 +32,7 @@ export const useCreateMyRestaurant = () => {
   const { getAccessTokenSilently } = useAuth0();
 
   const createMyRestaurantRequest = async (
-    restaurantFormData: FormData
+    restaurantFormData: FormData,
   ): Promise<Restaurant> => {
     const accessToken = await getAccessTokenSilently();
 
@@ -48,12 +48,9 @@ export const useCreateMyRestaurant = () => {
     return response.json();
   };
 
-  const {
-    mutate: createRestaurant,
-    isLoading,
-    isSuccess,
-    error,
-  } = useMutation(createMyRestaurantRequest);
+  const { mutate: createRestaurant, isLoading, isSuccess, error } = useMutation(
+    createMyRestaurantRequest,
+  );
 
   if (isSuccess) toast.success("Restaurant Created!");
   if (error) toast.error("unable to create restaurant");
@@ -66,7 +63,7 @@ export const useUpdateMyRestaurant = () => {
   const { getAccessTokenSilently } = useAuth0();
 
   const updateMyRestaurantRequest = async (
-    restaurantFormData: FormData
+    restaurantFormData: FormData,
   ): Promise<Restaurant> => {
     const accessToken = await getAccessTokenSilently();
 
@@ -82,12 +79,9 @@ export const useUpdateMyRestaurant = () => {
     return response.json();
   };
 
-  const {
-    mutate: updateRestaurant,
-    isLoading,
-    isSuccess,
-    error,
-  } = useMutation(updateMyRestaurantRequest);
+  const { mutate: updateRestaurant, isLoading, isSuccess, error } = useMutation(
+    updateMyRestaurantRequest,
+  );
 
   if (isSuccess) toast.success("Restaurant Updated!");
   if (error) toast.error("unable to update restaurant");

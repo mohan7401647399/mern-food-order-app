@@ -2,6 +2,7 @@ import { auth } from "express-oauth2-jwt-bearer";
 import Jwt from "jsonwebtoken";
 import User from "../model/User";
 
+//  custom types
 declare global {
     namespace Express {
         interface Request {
@@ -11,14 +12,14 @@ declare global {
     }
 }
 
-//  Auth0 config details
+//  jwt middleware
 export const jwtCheck = auth({
     audience: process.env.AUTH0_AUDIENCE,
     issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
     tokenSigningAlg: 'RS256'
 });
 
-//  jwt decoded token 
+//  jwt parse 
 export const jwtParse = async (req: any, res: any, next: any) => {
     const { authorization } = req.headers
     if (!authorization || !authorization.startsWith('Bearer ')) return res.sendStatus(401)

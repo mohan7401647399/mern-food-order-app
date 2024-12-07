@@ -7,13 +7,14 @@ import Auth0ProviderWithNavigate from "./Auth/Auth0ProviderwithNavigate";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "sonner";
 
+//  query client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false
-    }
-  }
-})
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -21,9 +22,9 @@ createRoot(document.getElementById("root")!).render(
       <QueryClientProvider client={queryClient}>
         <Auth0ProviderWithNavigate>
           <AppRoutes />
-          <Toaster visibleToasts={1} position="top-right" richColors />
+          <Toaster visibleToasts={1} position='top-right' richColors />
         </Auth0ProviderWithNavigate>
       </QueryClientProvider>
     </Router>
-  </StrictMode>
+  </StrictMode>,
 );

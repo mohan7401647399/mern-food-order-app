@@ -70,7 +70,7 @@ const updateMyRestaurant = async (req: any, res: any) => {
     }
 }
 
-//  image upload function
+//  upload image
 const uploadImage = async (file: Express.Multer.File) => {
     const image = file
     const base64Image = Buffer.from(file.buffer).toString('base64')
@@ -81,4 +81,5 @@ const uploadImage = async (file: Express.Multer.File) => {
     return uploadResponse.url
 }
 
+//  export
 export default { getMyRestaurant, createMyRestaurant, updateMyRestaurant }

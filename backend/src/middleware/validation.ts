@@ -1,6 +1,6 @@
 import { body, validationResult } from "express-validator";
 
-//  error validation
+// handle validation errors
 const handleValidationErrors = async (req: any, res: any, next: any) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() })
@@ -8,7 +8,7 @@ const handleValidationErrors = async (req: any, res: any, next: any) => {
     next()
 }
 
-//  user profile field validation
+//  validate my user request
 export const validateMyUserRequest = [
     body('name').isString().notEmpty().withMessage("Name must be a string"),
     body('addressLine1').isString().notEmpty().withMessage("addressLine1 must be a string"),
@@ -17,6 +17,7 @@ export const validateMyUserRequest = [
     handleValidationErrors
 ]
 
+//  validate my restaurant request
 export const validateMyRestaurantRequest = [
     body("restaurantName").notEmpty().withMessage("Restaurant name is required"),
     body("city").notEmpty().withMessage("City is required"),

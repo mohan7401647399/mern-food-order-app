@@ -1,3 +1,4 @@
+//  user types
 export type User = {
     _id: string
     email: string
@@ -6,13 +7,13 @@ export type User = {
     city: string
     country: string
 }
-
+//  restaurant types
 export type MenuItem = {
     _id: string
     name: string
     price: number
 }
-
+//  restaurant types
 export type Restaurant = {
     _id: string
     user: string
@@ -26,7 +27,7 @@ export type Restaurant = {
     imageUrl: string
     lastUpdated: string
 }
-
+//  search types
 export type RestaurantSearchResponse = {
     data: Restaurant[],
     pagination: {

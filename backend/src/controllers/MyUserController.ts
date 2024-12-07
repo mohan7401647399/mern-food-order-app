@@ -1,6 +1,6 @@
 import User from "../model/User";
 
-//  get user
+//  get the existing user
 const getCurrentUser = async (req: any, res: any) => {
     try {
         const currentUser = await User.findOne({ _id: req.userId })
@@ -54,6 +54,7 @@ const updateCurrentUser = async (req: any, res: any) => {
     }
 }
 
+//  export
 export default {
     createCurrentUser,
     updateCurrentUser,

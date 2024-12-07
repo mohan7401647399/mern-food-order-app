@@ -1,5 +1,6 @@
 import { OrderStatus } from "@/types";
 
+//  Order Status - schema
 type OrderStatusInfo = {
   label: string;
   value: OrderStatus;

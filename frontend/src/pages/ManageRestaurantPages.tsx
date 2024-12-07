@@ -6,12 +6,17 @@ import {
 import ManageRestaurantForm from "@/forms/user-profile-form/manage-restaurant-form/ManageRestaurantForm";
 
 export default function ManageRestaurantPages() {
-  const { createRestaurant, isLoading: isCreateLoading } =
-    useCreateMyRestaurant();
+  const {
+    createRestaurant,
+    isLoading: isCreateLoading,
+  } = useCreateMyRestaurant();
   const { restaurant } = useGetMyRestaurant();
-  const { updateRestaurant, isLoading: isUpdateLoading } =
-    useUpdateMyRestaurant();
+  const {
+    updateRestaurant,
+    isLoading: isUpdateLoading,
+  } = useUpdateMyRestaurant();
 
+  //  check if editing
   const isEditing = !!restaurant;
 
   return (

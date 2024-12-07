@@ -39,7 +39,7 @@ const formSchema = z
       z.object({
         name: z.string().min(1, "name is required"),
         price: z.coerce.number().min(1, "price is required"),
-      })
+      }),
     ),
     imageUrl: z.string().optional(),
     imageFile: z.instanceof(File, { message: "image is required" }).optional(),
@@ -49,14 +49,17 @@ const formSchema = z
     path: ["imageFile"],
   });
 
+//  Type for restaurant details
 type RestaurantFormData = z.infer<typeof formSchema>;
 
+//  Type for manage restaurant form
 type Props = {
   restaurant?: Restaurant;
   onSave: (restaurantFormData: FormData) => void;
   isLoading: boolean;
 };
 
+//  Manage restaurant form
 const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
   const form = useForm<RestaurantFormData>({
     resolver: zodResolver(formSchema),
@@ -66,19 +69,22 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
     },
   });
 
+  //  set default values
   useEffect(() => {
     if (!restaurant) return;
 
-    // price lowest domination of 100 = 100pence == 1GBP
+    //  format data for delivery price
     const deliveryPriceFormatted = parseInt(
-      (restaurant.deliveryPrice / 100).toFixed(2)
+      (restaurant.deliveryPrice / 100).toFixed(2),
     );
 
+    //  format data for menu items
     const menuItemsFormatted = restaurant.menuItems.map((item) => ({
       ...item,
       price: parseInt((item.price / 100).toFixed(2)),
     }));
 
+    //  update restaurant with formatted data
     const updatedRestaurant = {
       ...restaurant,
       deliveryPrice: deliveryPriceFormatted,
@@ -88,6 +94,7 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
     form.reset(updatedRestaurant);
   }, [form, restaurant]);
 
+  //  handle submit
   const onSubmit = (formDataJson: RestaurantFormData) => {
     const formData = new FormData();
 
@@ -97,11 +104,11 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
 
     formData.append(
       "deliveryPrice",
-      (formDataJson.deliveryPrice * 100).toString()
+      (formDataJson.deliveryPrice * 100).toString(),
     );
     formData.append(
       "estimatedDeliveryTime",
-      formDataJson.estimatedDeliveryTime.toString()
+      formDataJson.estimatedDeliveryTime.toString(),
     );
     formDataJson.cuisines.forEach((cuisine, index) => {
       formData.append(`cuisines[${index}]`, cuisine);
@@ -110,7 +117,7 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
       formData.append(`menuItems[${index}][name]`, menuItem.name);
       formData.append(
         `menuItems[${index}][price]`,
-        (menuItem.price * 100).toString()
+        (menuItem.price * 100).toString(),
       );
     });
 
@@ -125,7 +132,7 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 bg-gray-50 p-10 rounded-lg"
+        className='space-y-8 bg-gray-50 p-10 rounded-lg'
       >
         <DetailsSection />
         <Separator />
@@ -134,7 +141,7 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
         <MenuSection />
         <Separator />
         <ImageSection />
-        {isLoading ? <LoadingButtons /> : <Button type="submit">Submit</Button>}
+        {isLoading ? <LoadingButtons /> : <Button type='submit'>Submit</Button>}
       </form>
     </Form>
   );

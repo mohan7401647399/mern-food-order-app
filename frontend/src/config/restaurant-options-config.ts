@@ -1,3 +1,4 @@
+//  Cuisines
 export const cuisineList = [
   "American",
   "BBQ",

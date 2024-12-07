@@ -6,6 +6,7 @@ import { validateMyRestaurantRequest } from "../middleware/validation";
 
 const router = express.Router();
 
+//  image upload
 const storage = multer.memoryStorage();
 const upload = multer({
   storage: storage,
@@ -14,27 +15,29 @@ const upload = multer({
   },
 });
 
-//  get restaurant details
-router.get('/', jwtCheck, jwtParse, MyRestaurantController.getMyRestaurant)
+//  restaurant route controller
+router
+  //  get the existing restaurant
+  .get("/", jwtCheck, jwtParse, MyRestaurantController.getMyRestaurant)
+  
+  //  create a new restaurant
+  .post(
+    "/",
+    upload.single("imageFile"),
+    validateMyRestaurantRequest,
+    jwtCheck,
+    jwtParse,
+    MyRestaurantController.createMyRestaurant,
+  )
 
-//  create a new restaurant
-router.post(
-  "/",
-  upload.single("imageFile"),
-  validateMyRestaurantRequest,
-  jwtCheck,
-  jwtParse,
-  MyRestaurantController.createMyRestaurant
-);
-
-//  update the existing restaurant
-router.put(
-  "/",
-  upload.single("imageFile"),
-  validateMyRestaurantRequest,
-  jwtCheck,
-  jwtParse,
-  MyRestaurantController.updateMyRestaurant
-)
+  //  update the existing restaurant
+  .put(
+    "/",
+    upload.single("imageFile"),
+    validateMyRestaurantRequest,
+    jwtCheck,
+    jwtParse,
+    MyRestaurantController.updateMyRestaurant,
+  );
 
 export default router;
